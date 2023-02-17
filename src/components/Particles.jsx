@@ -24,7 +24,7 @@ const ParticlesElement = (props) => {
             options={{
                 particles: {
                     number: {
-                        value: 300,
+                        value: 100,
                         density: {
                             enable: true,
                             value_area: 800
@@ -129,7 +129,8 @@ const ParticlesElement = (props) => {
                         }
                     }
                 },
-                retina_detect: true
+                retina_detect: true,
+                fpsLimit: 60
             }}
         />
     );

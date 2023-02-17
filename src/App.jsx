@@ -15,8 +15,8 @@ import AboutPage from './pages/About/About';
 
 
 function App() {
-  const [darkMode, setDarkMode] = React.useState(localStorage.getItem('darkMode') === 'true' ? true : false)
-  const [particlesEnabled, setParticles] = React.useState(localStorage.getItem('particleEffect') === 'true' ? true : false)
+  const [darkMode, setDarkMode] = React.useState(localStorage.getItem('darkMode') === 'false' ? false : true)
+  const [particlesEnabled, setParticles] = React.useState(localStorage.getItem('particleEffect') === 'false' ? false : true)
 
   function toggleParticles() {
       setParticles(t => !t)

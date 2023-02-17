@@ -12,8 +12,6 @@ function HomePage(props) {
 const [currentPage, setPage] = React.useState(0);
 const [currentMessage, setCurrentMessage] = React.useState(0);
 
-console.log('%PUBLIC_URL%')
-
 function formatAMPM(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();

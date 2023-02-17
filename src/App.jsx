@@ -47,7 +47,7 @@ function App() {
       errorElement: <ErrorPage darkMode={darkMode}/>
     },
     {
-      path: "/home",
+      path: "home",
       element: (
         <HomePage darkMode={darkMode} particlesEnabled={particlesEnabled} />
       ),

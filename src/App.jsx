@@ -26,11 +26,16 @@ function App() {
   if(localStorage.getItem('darkMode') === null) {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       localStorage.setItem('darkMode', true)
-    } else localStorage.setItem('darkMode', false)
+      setDarkMode(true)
+    } else {
+      localStorage.setItem('darkMode', false)
+      setDarkMode(false)
+    }
   }
 
   if(localStorage.getItem('particleEffect') === null) {
     localStorage.setItem('particleEffect', true)
+    setParticles(true)
   }
 
   function toggleDarkMode() {

@@ -2,19 +2,17 @@ import ParticlesElement from "../../components/Particles"
 import { Fade, Slide } from '@mui/material'
 import React from 'react'
 import './imessage.css'
-import ParticlesSwitch from "../../components/particles_toggle";
 import { Typewriter } from 'react-simple-typewriter'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { useNavigate } from "react-router-dom"
+import { Tooltip } from 'antd'
 
 function HomePage(props) {
 const [currentPage, setPage] = React.useState(0);
 const [currentMessage, setCurrentMessage] = React.useState(0);
-const [particlesEnabled, setParticles] = React.useState(true)
 
-function toggleParticles() {
-    setParticles(t => !t)
-}
+console.log('%PUBLIC_URL%')
 
 function formatAMPM(date) {
     var hours = date.getHours();
@@ -29,7 +27,14 @@ function formatAMPM(date) {
 
 React.useEffect(() => {
     setTimeout(() => {setCurrentMessage(1)}, 500)
+    if(window.location.search !== '?showDialog=true') {
+        setPage(2)
+    }
+    
+
 }, [])
+
+const navigate = useNavigate()
 
 return (
     <div>
@@ -39,7 +44,7 @@ return (
             setTimeout(() => {setPage(2)}, 100)
          }}>
             <div className='min-h-screen min-w-screen overflow-hidden'>
-            <button onClick={() => setPage(1)} className={`px-5 py-1 font-inter mt-5 font-light text-md outline-none border-none fixed bottom-0 left-0 mb-4 ml-4 transition duration-300 hover:translate-y-2 ${props.darkMode ? 'hover:bg-white hover:text-black dark' : 'hover:bg-black hover:text-white light'}`}>skip dialog</button>
+            <button onClick={() => {setPage(1); window.history.replaceState(null, "Chris's Portfolio", "/home")}} className={`px-5 py-1 font-inter mt-5 font-light text-md outline-none border-none fixed bottom-0 left-0 mb-4 ml-4 transition duration-300 hover:translate-y-2 ${props.darkMode ? 'hover:bg-white hover:text-black dark' : 'hover:bg-black hover:text-white light'}`}>skip dialog</button>
             <div className='flex flex-col max-w-screen-sm min-h-screen justify-center items-center m-auto'>
                 <Slide in={currentMessage >= 1} direction={'up'} onEntered={() => {setCurrentMessage(2)}} timeout={350}>
                     <div className='ml-auto mr-2'>
@@ -92,7 +97,7 @@ return (
                 <Slide in={currentMessage >= 11} direction={'up'} onEntered={() => {setCurrentMessage(12)}} timeout={350}>
                     <div className='ml-auto mr-2'>
                         <div className="message-to dark:message-dark-to select-none font-inter">Let me show you!</div>
-                        <Fade in={currentMessage >= 12} onEntered={() => {setTimeout(() => {setPage(1)}, 1500)}}>
+                        <Fade in={currentMessage >= 12} onEntered={() => {setTimeout(() => {setPage(1); window.history.replaceState(null, "Chris's Portfolio", "/home")}, 1500)}}>
                             <h1 className='text-right m-0 text-xs font-inter font-normal text-gray-400 tracking-wider select-none'><span className='font-semibold'>Read</span>{' '+formatAMPM(new Date())}</h1>
                         </Fade>
                     </div>
@@ -102,20 +107,20 @@ return (
         </Fade>
         <Fade in={currentPage === 2} unmountOnExit mountOnEnter timeout={1000}>
             <div className='min-h-screen max-w-2xl m-auto'>
-                <ParticlesSwitch particles={particlesEnabled} toggleParticles={toggleParticles} />
-                <Fade in={particlesEnabled} unmountOnExit mountOnEnter>
+                <Fade in={props.particlesEnabled} unmountOnExit mountOnEnter>
                     <div>
                         <ParticlesElement darkMode={props.darkMode}/>
                     </div>
                 </Fade>
-                <p className={`fixed bottom-0 min-w-screen font-inter font-extralight text-lg p-5 select-none ${props.darkMode ? 'dark' : 'light'}`}>Made with <span style={{fontFamily: 'sans-serif'}}>❤️</span> by Chris with <a className='underline' href='https://reactjs.org'>React</a></p>
+                <p className={`fixed bottom-0 font-inter font-extralight text-sm p-5 select-none noLightDarkBackground ${props.darkMode ? 'dark' : 'light'}`}>Made with <span style={{fontFamily: 'sans-serif'}}>❤️</span> by Chris with <a className='underline' href='https://reactjs.org'>React</a></p>
 
-                <div className='text-left min-h-screen min-w-full m-4 flex flex-col items-center justify-center'>
+                <div className='text-left min-h-screen min-w-full mx-4 flex flex-col items-center justify-center'>
                     <div className='min-w-full'>
                         <div className='flex justify-start items-center'>
-                        <img className='rounded-full w-10 min-h-full mr-3 hidden md:block' src='https://cdn.discordapp.com/avatars/351189462891626496/ee50abd78843ca5c047e3c496f994bae.png?size=1024' alt='avatar' />
-                        <h1 className={`font-inter text-4xl font-semibold m-0 ${props.darkMode ? 'dark' : 'light'}`}>Hey <span className={`m-0 text-4xl font-semibold font-sans ${props.darkMode ? 'dark' : 'light'}`}>👋</span>, I'm 
+                        <img className='rounded-full w-10 min-h-full mr-3 hidden md:block select-none customImage' src='me.png' alt='avatar' />
+                        <h1 className={`font-inter text-4xl font-semibold m-0 ${props.darkMode ? 'dark' : 'light'} select-none`}>Hey <span className={`m-0 text-4xl font-semibold font-sans noLightDarkBackground ${props.darkMode ? 'dark' : 'light'}`}>👋</span>, I'm 
                         <Typewriter
+                                className='select-none'
                                 words={[' Tozzleboy.', ' Chris!']}
                                 loop={1}
                                 typeSpeed={100}
@@ -138,12 +143,22 @@ return (
                                 cursorStyle='_' />
                             </span>
                         </h1>
-                        <div className={`flex justify-start items-center mt-2 py-3 ${props.darkMode ? 'dark' : 'light'} gap-5`}>
-                            <FontAwesomeIcon onClick={() => {window.open('https://discord.com/users/351189462891626496')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' title='My Discord Profile (Tozzleboy#0001 | 351189462891626496)' icon={icon({name: 'discord', style: 'brands'})} />
-                            <FontAwesomeIcon onClick={() => {window.open('https://github.com/tozzleboy')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' title='My Github Page' icon={icon({name: 'github', style: 'brands'})} />
-                            <FontAwesomeIcon onClick={() => {window.open('https://twitter.com/Tozzleboy')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' title='My Twitter Page' icon={icon({name: 'twitter', style: 'brands'})} />
-                            <FontAwesomeIcon onClick={() => {window.open('https://www.buymeacoffee.com/cmcdev')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' title='Buy me a coffee' icon={icon({name: 'coffee', style: 'solid'})} />
-                            <FontAwesomeIcon className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' title='Portfolio of Work' icon={icon({name: 'briefcase', style: 'solid'})} />
+                        <div className={`flex justify-start items-center mt-2 py-3 noLightDarkBackground ${props.darkMode ? 'dark' : 'light'} gap-5`}>
+                            <Tooltip title='Discord Profile | Tozzleboy#0001'>
+                                <FontAwesomeIcon onClick={() => {window.open('https://discord.com/users/351189462891626496')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'discord', style: 'brands'})} />
+                            </Tooltip>
+                            <Tooltip title='Github Page'>
+                                <FontAwesomeIcon onClick={() => {window.open('https://github.com/tozzleboy')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'github', style: 'brands'})} />
+                            </Tooltip>
+                            <Tooltip title='Twitter Page'>
+                                <FontAwesomeIcon onClick={() => {window.open('https://twitter.com/Tozzleboy')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'twitter', style: 'brands'})} />
+                            </Tooltip>
+                            <Tooltip title='Buy Me A Coffee'>
+                                <FontAwesomeIcon onClick={() => {window.open('https://www.buymeacoffee.com/cmcdev')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'coffee', style: 'solid'})} />
+                            </Tooltip>
+                            <Tooltip title='My Portfolio'>
+                                <FontAwesomeIcon onClick={() => navigate('/about')} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'briefcase', style: 'solid'})} />
+                            </Tooltip>
                         </div>
                     </div>
                 </div>

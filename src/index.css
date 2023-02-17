@@ -17,6 +17,40 @@ h1 {
   cursor: default;
 }
 
+.customImage {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+@media (min-width: 800px) {
+  .Box:hover {
+    min-width: 9rem;
+  }
+}
+
+.Box {
+  transition: .1s ease-in-out;
+  min-width: 8rem;
+  overflow: hidden;
+  --color-canvas-default: #0d1117;
+  --color-border-default: #515561;
+  background-color: var(--color-canvas-default);
+  border-color: var(--color-border-default);
+  border-style: solid;
+  border-width: var(--primer-borderWidth-thin, 1px);
+}
+
+.groupIconBlur {
+    --brightness: brightness(70%);
+    --tw-blur: blur(0.3px);
+    --contrast: contrast(120%);
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) var(--brightness) var(--contrast);
+}
+
 .dark h1 {
   background-color: transparent;
 }
@@ -59,3 +93,6 @@ button {
   color: #161212;
 }
 
+.noLightDarkBackground {
+  background: transparent;
+}

@@ -146,7 +146,7 @@ return (
                                 <FontAwesomeIcon onClick={() => {window.open('https://discord.com/users/351189462891626496')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'discord', style: 'brands'})} />
                             </Tooltip>
                             <Tooltip title='Github Page'>
-                                <FontAwesomeIcon onClick={() => {window.open('https://github.com/tozzleboy')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'github', style: 'brands'})} />
+                                <FontAwesomeIcon onClick={() => {window.open('https://github.com/crmacca')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'github', style: 'brands'})} />
                             </Tooltip>
                             <Tooltip title='Twitter Page'>
                                 <FontAwesomeIcon onClick={() => {window.open('https://twitter.com/Tozzleboy')}} className='cursor-pointer transition ease-in-out duration-500 hover:opacity-70 text-3xl' icon={icon({name: 'twitter', style: 'brands'})} />

@@ -119,7 +119,7 @@ return (
                         <h1 className={`font-inter text-4xl font-semibold m-0 ${props.darkMode ? 'dark' : 'light'} select-none`}>Hey <span className={`m-0 text-4xl font-semibold font-sans noLightDarkBackground ${props.darkMode ? 'dark' : 'light'}`}>👋</span>, I'm 
                         <Typewriter
                                 className='select-none'
-                                words={[' Tozzleboy.', ' Chris!']}
+                                words={[' Christian.', ' Chris!']}
                                 loop={1}
                                 typeSpeed={100}
                                 deleteSpeed={50}

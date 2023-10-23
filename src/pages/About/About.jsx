@@ -116,9 +116,9 @@ function AboutPage(props) {
             <Slide in={keyframe >= 4 || skippedAnimation} direction={'right'} timeout={1000}>
                 <div className='flex justify-start items-center overflow-auto max-w-full gap-5 p-1'>
                     {data.projects.map(group => (
-                        <div className='aspect-square min-h-full rounded-2xl overflow-hidden transition duration-300 Box hover:brightness-150 cursor-pointer'>
+                        <a href={group.href || ''} className='aspect-square min-h-full rounded-2xl overflow-hidden transition duration-300 Box hover:brightness-150 cursor-pointer'>
                             <img style={{height: '100%', width: '100%', maxHeight: '150px'}} className='min-w-full min-h-full groupIconBlur rounded-2xl' src={group.icon} alt={group.name}/>
-                        </div>
+                        </a>
                     ))}
                     {data.projects.length === 0 && <div>
                         <h1 className='font-inter font-normal text-xl'>There is nothing to see yet, but not for long! 😉</h1>

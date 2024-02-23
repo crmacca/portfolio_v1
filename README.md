@@ -1,1 +1,1 @@
-Hosted at https://cmcdev.net
+Hosted at https://v1.cmcdev.net
